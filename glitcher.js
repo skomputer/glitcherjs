@@ -19,11 +19,14 @@
       this.reset_rarity = reset_rarity;
     }
 
-    Glitcher.prototype.load_url = function(url, header_lines_num) {
+    Glitcher.prototype.load_url = function(url, header_lines_num, callback) {
       var t;
 
       if (header_lines_num == null) {
         header_lines_num = 5;
+      }
+      if (callback == null) {
+        callback = void 0;
       }
       t = this;
       this.image = new Image;
@@ -33,9 +36,12 @@
         t.load_canvas();
         data = t.canvas.toDataURL("image/jpeg", 1);
         t.load_data(data, header_lines_num);
-        return t.image.onload = function() {
+        t.image.onload = function() {
           return t.load_canvas();
         };
+        if (callback !== void 0) {
+          return callback();
+        }
       };
       return this.image.src = url;
     };
