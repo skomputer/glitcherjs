@@ -26,7 +26,7 @@
         header_lines_num = 5;
       }
       if (callback == null) {
-        callback = void 0;
+        callback = null;
       }
       t = this;
       this.image = new Image;
@@ -39,7 +39,7 @@
         t.image.onload = function() {
           return t.load_canvas();
         };
-        if (callback !== void 0) {
+        if (callback !== null) {
           return callback();
         }
       };
@@ -72,9 +72,9 @@
     };
 
     Glitcher.prototype.stop = function() {
-      if (this.loop !== void 0) {
+      if (this.loop !== null) {
         window.clearInterval(this.loop);
-        return this.loop = void 0;
+        return this.loop = null;
       }
     };
 
@@ -206,7 +206,7 @@
 
     Glitcher.prototype.set_delay = function(delay) {
       this.delay = delay;
-      if (this.loop !== void 0) {
+      if (this.loop !== null) {
         this.stop();
         return this.start();
       }
